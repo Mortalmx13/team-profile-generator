@@ -1,0 +1,33 @@
+.header h1{
+    font-size: 50px;
+    text-align: center;
+    background-color: yellow;
+    padding: 10px;
+}
+.grid{
+    display: grid;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+}
+
+.grid div{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    background-color: purple;
+    width: 30vh;
+}
+
+.grid div h2{
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 2px;
+}
+.grid div h3,
+.grid div p{
+    padding-bottom: 5px;
+}
