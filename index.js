@@ -10,3 +10,59 @@
 // THEN I exit the application, and the HTML is generated
 const inquirer = require('inquirer');
 const fs = require('fs');
+const Employee = require("../lib/employee");
+const Engineer = require("../lib/engineer");
+const Intern = require("../lib/intern");
+const Manager = require("../lib/manager");
+const teamMember = [];
+
+const promptManager = () =>{
+return inquirer.prompt([
+    {
+type: "input",
+name: "name",
+message: "WHat is their name?",
+validate: nameInput => {
+    if(nameInput = ""){
+        console.log("Enter a name!")
+    }
+}
+},
+{
+    type: "input",
+    name: "personId",
+    message: "What is their ID?",
+    validate: personId => {
+        if(personId === ""){
+            console.log("Enter an ID!")
+            return false;
+        }
+    }
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is their Email?",
+        validate: email => {
+            if(email = ""){
+                console.log("Enter an Email!")
+            }
+        }
+        },
+        {
+            type: "input",
+            name: "officeNum",
+            message: "What is your office number?",
+            validate: officeNum => {
+                if(officeNum = ""){
+                    console.log("Enter an office number!")
+                }
+            }
+            }
+]).then(response =>{
+    console.log(response);
+    const manager = new Manager(response.name, response.personId, response.email, response.officeNum)
+    teamMember.push(manager);
+    promptMenu();
+})
+};
