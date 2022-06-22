@@ -14,6 +14,7 @@ const Employee = require("../lib/employee");
 const Engineer = require("../lib/engineer");
 const Intern = require("../lib/intern");
 const Manager = require("../lib/manager");
+const genPage = require("./generate-page")
 const teamMember = [];
 
 const promptManager = () =>{
@@ -66,3 +67,125 @@ validate: nameInput => {
     promptMenu();
 })
 };
+//menu for picking if what level of job they have
+const promptMenu = () =>{
+    return inquirer.prompt([
+        {
+type: "list",
+name: "menu",
+message: "Select which option you would like: ",
+choices: ["Add an Engineer", "Add an Intern", "Finished My Team"]
+        }
+    ]).then(userChoice => {
+        switch(userChoice.menu){
+            case"Add an Engineer":
+            promp
+        }
+    })
+}
+//gets input for new enginerr
+const promptEngineer = () =>{
+    return inquirer.prompt([
+        {
+    type: "input",
+    name: "name",
+    message: "WHat is their name?",
+    validate: nameInput => {
+        if(nameInput = ""){
+            console.log("Enter a name!")
+        }
+    }
+    },
+    {
+        type: "input",
+        name: "personId",
+        message: "What is their ID?",
+        validate: personId => {
+            if(personId === ""){
+                console.log("Enter an ID!")
+                return false;
+            }
+        }
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is their Email?",
+            validate: email => {
+                if(email = ""){
+                    console.log("Enter an Email!")
+                }
+            }
+            },
+            {
+                type: "input",
+                name: "gitHub",
+                message: "What is your gitHub?",
+                validate: gitHub => {
+                    if(gitHub = ""){
+                        console.log("Enter a gitHub username!")
+                    }
+                }
+                }
+    ]).then(response =>{
+        console.log(response);
+        const engineer = new Engineer(response.name, response.personId, response.email, response.gitHub)
+        teamMember.push(engineer);
+        promptMenu();
+    })
+    };
+    //gets inputs for new intern
+    const promptIntern = () =>{
+        return inquirer.prompt([
+            {
+        type: "input",
+        name: "name",
+        message: "WHat is their name?",
+        validate: nameInput => {
+            if(nameInput = ""){
+                console.log("Enter a name!")
+            }
+        }
+        },
+        {
+            type: "input",
+            name: "personId",
+            message: "What is their ID?",
+            validate: personId => {
+                if(personId === ""){
+                    console.log("Enter an ID!")
+                    return false;
+                }
+            }
+            },
+            {
+                type: "input",
+                name: "email",
+                message: "What is their Email?",
+                validate: email => {
+                    if(email = ""){
+                        console.log("Enter an Email!")
+                    }
+                }
+                },
+                {
+                    type: "input",
+                    name: "school",
+                    message: "What school did you go to?",
+                    validate: school => {
+                        if(school = ""){
+                            console.log("Enter your school name!")
+                        }
+                    }
+                    }
+        ]).then(response =>{
+            console.log(response);
+            const engineer = new Engineer(response.name, response.personId, response.email, response.school)
+            teamMember.push(engineer);
+            promptMenu();
+        })
+        };
+        
+        const buildMyTeam = () => {
+
+        }
