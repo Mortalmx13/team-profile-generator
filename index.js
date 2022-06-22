@@ -15,6 +15,9 @@ const Engineer = require("../lib/engineer");
 const Intern = require("../lib/intern");
 const Manager = require("../lib/manager");
 const genPage = require("./generate-page")
+const path = require("path");
+const output_Dir = path.resolve(__dirname, "output");
+const outputPath = path.join(output_Dir, "my-team.html")
 const teamMember = [];
 
 const promptManager = () =>{
@@ -22,7 +25,7 @@ return inquirer.prompt([
     {
 type: "input",
 name: "name",
-message: "WHat is their name?",
+message: "What is their name?",
 validate: nameInput => {
     if(nameInput = ""){
         console.log("Enter a name!")
@@ -60,6 +63,7 @@ validate: nameInput => {
                 }
             }
             }
+            //outputs results
 ]).then(response =>{
     console.log(response);
     const manager = new Manager(response.name, response.personId, response.email, response.officeNum)
@@ -79,7 +83,13 @@ choices: ["Add an Engineer", "Add an Intern", "Finished My Team"]
     ]).then(userChoice => {
         switch(userChoice.menu){
             case"Add an Engineer":
-            promp
+            promptEngineer();
+            break;
+            case "Add an Intern":
+            promptIntern();
+            break;
+            default:
+                buildMyTeam();
         }
     })
 }
@@ -89,7 +99,7 @@ const promptEngineer = () =>{
         {
     type: "input",
     name: "name",
-    message: "WHat is their name?",
+    message: "What is their name?",
     validate: nameInput => {
         if(nameInput = ""){
             console.log("Enter a name!")
@@ -127,6 +137,7 @@ const promptEngineer = () =>{
                     }
                 }
                 }
+                //outputs results
     ]).then(response =>{
         console.log(response);
         const engineer = new Engineer(response.name, response.personId, response.email, response.gitHub)
@@ -140,7 +151,7 @@ const promptEngineer = () =>{
             {
         type: "input",
         name: "name",
-        message: "WHat is their name?",
+        message: "What is their name?",
         validate: nameInput => {
             if(nameInput = ""){
                 console.log("Enter a name!")
@@ -178,14 +189,19 @@ const promptEngineer = () =>{
                         }
                     }
                     }
+                    //outputs results
         ]).then(response =>{
             console.log(response);
-            const engineer = new Engineer(response.name, response.personId, response.email, response.school)
-            teamMember.push(engineer);
+            const intern = new Intern(response.name, response.personId, response.email, response.school)
+            teamMember.push(intern);
             promptMenu();
         })
         };
         
         const buildMyTeam = () => {
-
-        }
+if(!fs.existsSync(output_Dir)){
+    fs.mkdirSync(output_Dir)
+}
+fs.writeFileSync(outputPath, genPage(teamMember, "utf-8"))
+}
+promptManager();
