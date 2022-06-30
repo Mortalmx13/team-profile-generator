@@ -8,12 +8,11 @@
 // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
-const inquirer = require('inquirer');
+const inquirer = require("inquirer");
 const fs = require('fs');
-const Employee = require("../lib/employee");
-const Engineer = require("../lib/engineer");
-const Intern = require("../lib/intern");
-const Manager = require("../lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const Manager = require("./lib/manager");
 const genPage = require("./generate-page")
 const path = require("path");
 const output_Dir = path.resolve(__dirname, "output");
@@ -26,42 +25,42 @@ return inquirer.prompt([
 type: "input",
 name: "name",
 message: "What is their name?",
-validate: nameInput => {
-    if(nameInput = ""){
-        console.log("Enter a name!")
-    }
-}
+// validate: nameInput => {
+//     if(nameInput = ""){
+//         console.log("Enter a name!")
+//     }
+// }
 },
 {
     type: "input",
     name: "personId",
     message: "What is their ID?",
-    validate: personId => {
-        if(personId === ""){
-            console.log("Enter an ID!")
-            return false;
-        }
-    }
+    // validate: personId => {
+    //     if(personId === ""){
+    //         console.log("Enter an ID!")
+    //         return false;
+    //     }
+    // }
     },
     {
         type: "input",
         name: "email",
         message: "What is their Email?",
-        validate: email => {
-            if(email = ""){
-                console.log("Enter an Email!")
-            }
-        }
+        // validate: email => {
+        //     if(email = ""){
+        //         console.log("Enter an Email!")
+        //     }
+        // }
         },
         {
             type: "input",
             name: "officeNum",
             message: "What is your office number?",
-            validate: officeNum => {
-                if(officeNum = ""){
-                    console.log("Enter an office number!")
-                }
-            }
+            // validate: officeNum => {
+            //     if(officeNum = ""){
+            //         console.log("Enter an office number!")
+            //     }
+            // }
             }
             //outputs results
 ]).then(response =>{
@@ -100,42 +99,42 @@ const promptEngineer = () =>{
     type: "input",
     name: "name",
     message: "What is their name?",
-    validate: nameInput => {
-        if(nameInput = ""){
-            console.log("Enter a name!")
-        }
-    }
+    // validate: nameInput => {
+    //     if(nameInput = ""){
+    //         console.log("Enter a name!")
+    //     }
+    // }
     },
     {
         type: "input",
         name: "personId",
         message: "What is their ID?",
-        validate: personId => {
-            if(personId === ""){
-                console.log("Enter an ID!")
-                return false;
-            }
-        }
+        // validate: personId => {
+        //     if(personId === ""){
+        //         console.log("Enter an ID!")
+        //         return false;
+        //     }
+        // }
         },
         {
             type: "input",
             name: "email",
             message: "What is their Email?",
-            validate: email => {
-                if(email = ""){
-                    console.log("Enter an Email!")
-                }
-            }
+            // validate: email => {
+            //     if(email = ""){
+            //         console.log("Enter an Email!")
+            //     }
+            // }
             },
             {
                 type: "input",
                 name: "gitHub",
                 message: "What is your gitHub?",
-                validate: gitHub => {
-                    if(gitHub = ""){
-                        console.log("Enter a gitHub username!")
-                    }
-                }
+                // validate: gitHub => {
+                //     if(gitHub = ""){
+                //         console.log("Enter a gitHub username!")
+                //     }
+                // }
                 }
                 //outputs results
     ]).then(response =>{
@@ -152,42 +151,42 @@ const promptEngineer = () =>{
         type: "input",
         name: "name",
         message: "What is their name?",
-        validate: nameInput => {
-            if(nameInput = ""){
-                console.log("Enter a name!")
-            }
-        }
+        // validate: nameInput => {
+        //     if(nameInput = ""){
+        //         console.log("Enter a name!")
+        //     }
+        // }
         },
         {
             type: "input",
             name: "personId",
             message: "What is their ID?",
-            validate: personId => {
-                if(personId === ""){
-                    console.log("Enter an ID!")
-                    return false;
-                }
-            }
+            // validate: personId => {
+            //     if(personId === ""){
+            //         console.log("Enter an ID!")
+            //         return false;
+            //     }
+            // }
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is their Email?",
-                validate: email => {
-                    if(email = ""){
-                        console.log("Enter an Email!")
-                    }
-                }
+                // validate: email => {
+                //     if(email = ""){
+                //         console.log("Enter an Email!")
+                //     }
+                // }
                 },
                 {
                     type: "input",
                     name: "school",
                     message: "What school did you go to?",
-                    validate: school => {
-                        if(school = ""){
-                            console.log("Enter your school name!")
-                        }
-                    }
+                    // validate: school => {
+                    //     if(school = ""){
+                    //         console.log("Enter your school name!")
+                    //     }
+                    // }
                     }
                     //outputs results
         ]).then(response =>{
@@ -195,7 +194,9 @@ const promptEngineer = () =>{
             const intern = new Intern(response.name, response.personId, response.email, response.school)
             teamMember.push(intern);
             promptMenu();
-        })
+        }).catch(function(error) {
+            console.log(error);
+          })
         };
         
         const buildMyTeam = () => {
@@ -203,5 +204,6 @@ if(!fs.existsSync(output_Dir)){
     fs.mkdirSync(output_Dir)
 }
 fs.writeFileSync(outputPath, genPage(teamMember, "utf-8"))
+
 }
 promptManager();

@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/Mortalmx13/team-profile-generator#readme",
   "dependencies": {
-    "inquirer": "^9.0.0"
+    "inquirer": "^6.2.1"
   }
 }

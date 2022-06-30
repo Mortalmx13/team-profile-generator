@@ -2,10 +2,10 @@ const generateMyTeam = (team) => {
     console.log(team);
 
     const html = [];
-
+    let managerHtml = ""
     const generateManager = manager =>{
         console.log(manager);
-        let managerHtml =
+         managerHtml =
         `
 
     <div class="grid">
@@ -20,9 +20,10 @@ const generateMyTeam = (team) => {
 `;
 html.push(managerHtml)
     }
+    let engineerHtml = "";
     const generateEngineer = engineer =>{
         console.log(engineer);
-        let engineerHtml =
+        engineerHtml =
         `
   
     <div class="grid">
@@ -36,10 +37,10 @@ html.push(managerHtml)
         </div>`;
 }
 html.push(engineerHtml)
-
+let internHtml = "";
 const generateIntern = intern =>{
     console.log(intern);
-    let internHtml =
+    internHtml =
     `
    
 <div class="grid">
