@@ -18,49 +18,32 @@ const path = require("path");
 const output_Dir = path.resolve(__dirname, "output");
 const outputPath = path.join(output_Dir, "my-team.html")
 const teamMember = [];
-
+//asks the user about the manager
 const promptManager = () =>{
 return inquirer.prompt([
     {
 type: "input",
 name: "name",
 message: "What is their name?",
-// validate: nameInput => {
-//     if(nameInput = ""){
-//         console.log("Enter a name!")
-//     }
-// }
+
 },
 {
     type: "input",
     name: "personId",
     message: "What is their ID?",
-    // validate: personId => {
-    //     if(personId === ""){
-    //         console.log("Enter an ID!")
-    //         return false;
-    //     }
-    // }
+   
     },
     {
         type: "input",
         name: "email",
         message: "What is their Email?",
-        // validate: email => {
-        //     if(email = ""){
-        //         console.log("Enter an Email!")
-        //     }
-        // }
+       
         },
         {
-            type: "input",
-            name: "officeNum",
+            type: 'input',
+            name: 'officeNum',
             message: "What is your office number?",
-            // validate: officeNum => {
-            //     if(officeNum = ""){
-            //         console.log("Enter an office number!")
-            //     }
-            // }
+            
             }
             //outputs results
 ]).then(response =>{
@@ -99,42 +82,25 @@ const promptEngineer = () =>{
     type: "input",
     name: "name",
     message: "What is their name?",
-    // validate: nameInput => {
-    //     if(nameInput = ""){
-    //         console.log("Enter a name!")
-    //     }
-    // }
+    
     },
     {
         type: "input",
         name: "personId",
         message: "What is their ID?",
-        // validate: personId => {
-        //     if(personId === ""){
-        //         console.log("Enter an ID!")
-        //         return false;
-        //     }
-        // }
+       
         },
         {
             type: "input",
             name: "email",
             message: "What is their Email?",
-            // validate: email => {
-            //     if(email = ""){
-            //         console.log("Enter an Email!")
-            //     }
-            // }
+           
             },
             {
                 type: "input",
                 name: "gitHub",
                 message: "What is your gitHub?",
-                // validate: gitHub => {
-                //     if(gitHub = ""){
-                //         console.log("Enter a gitHub username!")
-                //     }
-                // }
+               
                 }
                 //outputs results
     ]).then(response =>{
@@ -151,42 +117,25 @@ const promptEngineer = () =>{
         type: "input",
         name: "name",
         message: "What is their name?",
-        // validate: nameInput => {
-        //     if(nameInput = ""){
-        //         console.log("Enter a name!")
-        //     }
-        // }
+       
         },
         {
             type: "input",
             name: "personId",
             message: "What is their ID?",
-            // validate: personId => {
-            //     if(personId === ""){
-            //         console.log("Enter an ID!")
-            //         return false;
-            //     }
-            // }
+           
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is their Email?",
-                // validate: email => {
-                //     if(email = ""){
-                //         console.log("Enter an Email!")
-                //     }
-                // }
+              
                 },
                 {
                     type: "input",
                     name: "school",
                     message: "What school did you go to?",
-                    // validate: school => {
-                    //     if(school = ""){
-                    //         console.log("Enter your school name!")
-                    //     }
-                    // }
+                    
                     }
                     //outputs results
         ]).then(response =>{
